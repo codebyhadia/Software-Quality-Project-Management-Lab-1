@@ -98,7 +98,8 @@ public class Binary
 		char bit1 = (ind1 >= 0) ? num1.number.charAt(ind1) : '0';
 		char bit2 = (ind2 >= 0) ? num2.number.charAt(ind2) : '0';
 
-		// OR logic
+		//or function
+
 		char resBit = (bit1 == '1' || bit2 == '1') ? '1' : '0';
 		result = resBit + result;
 
@@ -110,18 +111,22 @@ public class Binary
 
 	public static Binary and(Binary num1, Binary num2)
 	{
-		in ind1= num1.number.length() - 1;
-		in ind2 = num2.number.length()- 1;
-		String result="";
+		int ind1 = num1.number.length() - 1;
+		int ind2 = num2.number.length() - 1;
+		String result = "";
 
-		while (ind1 >=0 || ind2>=0) {
-			char bit1 = (ind1 >=0) ? num1.number.chatAT(ind1) : '0';
-			char bit2 = (ind2 >=0) ? num2.number.charAt(ind2) : '0';
+		while (ind1 >= 0 || ind2 >= 0)
+		{
+			char bit1 = (ind1 >= 0) ? num1.number.charAt(ind1) : '0';
+			char bit2 = (ind2 >= 0) ? num2.number.charAt(ind2) : '0';
+
+			char resBit = (bit1 == '1' && bit2 == '1') ? '1' : '0';
 			result = resBit + result;
 
 			ind1--;
 			ind2--;
 		}
+
 		return new Binary(result);
 	}
 
@@ -129,17 +134,18 @@ public class Binary
 	{
 		Binary result = new Binary("0");
 
-		int ind2 = num2.number.length() -1;
-		int shift=0;
+		int ind2 = num2.number.length() - 1;
+		int shift = 0;
 
-		while (ind2 >0) {
-			if (num2.number.chatAt(ind2) == '1') {
-				String temp = num1.number + "0".repea(shift);
-			result = add(result, new Binary(temp));
+		while (ind2 >= 0) {
+			if (num2.number.charAt(ind2) == '1') {
+				String temp = num1.number + "0".repeat(shift);
+				result = add(result, new Binary(temp));
 			}
 			shift++;
 			ind2--;
 		}
 		return result;
 	}
+
 }	
